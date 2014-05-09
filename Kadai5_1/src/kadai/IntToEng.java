@@ -13,23 +13,46 @@ public class IntToEng {
 		int cpy=n;
 		boolean flag=false;
 		if(n==0)flag=true;
-		int[]a=new int[4];
-		int i=1000,count=0;
+		int[]a=new int[5];
+		int i=10000,count=0;
 		while(i>0){
 			a[count]=n/i;
 			n%=i;
 			i/=10;
 			count++;
 		}
-		int x=a[3]+a[2]*10;
+		int x=a[4]+a[3]*10;
+		int y=a[0]+a[1]*10;
 		String num="";
-		if(a[0]!=0)num=num+oneplace(a[0])+"thousand";
-		if(a[1]!=0)num=num+oneplace(a[1])+"hundred";
-		if(x>19)num+=tenplace(a[2]);
-		if(x>19 && a[3]!=0)num+=oneplace(a[3]);//20à»è„ÇÃ1ÇÃà 
+		/*
+		if(y>19 && a[1]!=0)num+=oneplace(a[1])+"thausand";//20à»è„ÇÃ1ÇÃà 
+		if(y<20&&y>0)num+=oneplace(y)+"thausand";
+		if(a[2]!=0)num=num+oneplace(a[2])+"hundred";
+		if(x>19)num+=tenplace(a[3]);
+		if(x>19 && a[4]!=0)num+=oneplace(a[4]);//20à»è„ÇÃ1ÇÃà 
 		if(x<20&&x>0)num+=oneplace(x);//20à»â∫ÇÃÇ∆Ç´ÇÃèàóù
+		*/
+		num=marugoto(a[2],a[3],a[4]);
 		if(flag)num="zero";
 		return num ;
+	}
+	static String marugoto(int a,int b,int c){
+		
+	String num="";
+		
+		int x=b*10+c;
+		
+		if(a!=0)num=num+oneplace(a)+"hundred";
+		if(x>19)num+=tenplace(b);
+		if(x>19&&c!=0)num+=oneplace(c);
+		if(x<20&&x>0)num+=oneplace(x);
+		return num;
+		/*
+		if(n/100!=0){num+=oneplace(n/100)+"hundred";
+		n=n%100;
+		}
+		if(n>19)num+=tenplace(n);
+		*/
 	}
 	
 	static String oneplace(int n){
