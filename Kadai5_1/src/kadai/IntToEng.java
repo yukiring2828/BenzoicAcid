@@ -10,12 +10,24 @@ public class IntToEng {
 		System.out.println(translateEng(input));			
 	}
 	static String translateEng(int n){
-		String num = "";
-		int a=0;
-		a=n/10;
-		
-		if(a>1){ num+=tenplace(a);n=n%10;}
-		if(n<20&&n>0) num+=oneplace(n);
+		int cpy=n;
+		boolean flag=false;
+		if(n==0)flag=true;
+		int[]a=new int[3];
+		int i=100,count=0;
+		while(i>0){
+			a[count]=n/i;
+			n%=i;
+			i/=10;
+			count++;
+		}
+		int x=a[2]+a[1]*10;
+		String num="";
+		if(a[0]!=0)num=num+oneplace(a[0])+"hundred";
+		if(x>19)num+=tenplace(a[1]);
+		if(x>19 && a[2]!=0)num+=oneplace(a[2]);//20ˆÈã‚Ì1‚ÌˆÊ
+		if(x<20&&x>0)num+=oneplace(x);//20ˆÈ‰º‚Ì‚Æ‚«‚Ìˆ—
+		if(flag)num="zero";
 		return num ;
 	}
 	
