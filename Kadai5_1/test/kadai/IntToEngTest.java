@@ -26,8 +26,8 @@ public class IntToEngTest {
 	@Test
 	public void marugoto() {
 		IntToEng com=new IntToEng();
-		String expect="five hundred nineteen ";
-		String answer=com.marugoto(5,1,9);
+		String expect="five hundred eighteen ";
+		String answer=com.marugoto(5,1,8);
 		assertThat(answer,is(expect));
 	}
 	
