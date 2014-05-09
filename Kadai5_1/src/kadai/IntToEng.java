@@ -13,19 +13,20 @@ public class IntToEng {
 		int cpy=n;
 		boolean flag=false;
 		if(n==0)flag=true;
-		int[]a=new int[3];
-		int i=100,count=0;
+		int[]a=new int[4];
+		int i=1000,count=0;
 		while(i>0){
 			a[count]=n/i;
 			n%=i;
 			i/=10;
 			count++;
 		}
-		int x=a[2]+a[1]*10;
+		int x=a[3]+a[2]*10;
 		String num="";
-		if(a[0]!=0)num=num+oneplace(a[0])+"hundred";
-		if(x>19)num+=tenplace(a[1]);
-		if(x>19 && a[2]!=0)num+=oneplace(a[2]);//20ˆÈã‚Ì1‚ÌˆÊ
+		if(a[0]!=0)num=num+oneplace(a[0])+"thousand";
+		if(a[1]!=0)num=num+oneplace(a[1])+"hundred";
+		if(x>19)num+=tenplace(a[2]);
+		if(x>19 && a[3]!=0)num+=oneplace(a[3]);//20ˆÈã‚Ì1‚ÌˆÊ
 		if(x<20&&x>0)num+=oneplace(x);//20ˆÈ‰º‚Ì‚Æ‚«‚Ìˆ—
 		if(flag)num="zero";
 		return num ;
